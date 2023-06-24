@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}
+   Category Page      
+{% endblock title %}
+{% load humanize %}
+{% block contents %}
+    <div class="container">
+        <div class="bg-success"><h4 class="text-center display-6 text-white" ><em>{{category.title}}</em></h4></div>
+        <div class="row">
+            {% if category %}
+                {% for product in category %}
+                    <div class="col-md-3">
+                        <div class="card my-2">
+                            <img src="{{product.image.url}}" alt="" class="img-fluid">
+                            <div class="card-body">
+                                <span class="badge bg-primary">In Stock: {{product.stock}}</span>
+                                <h4>{{product.title}}</h4>
+                                <h4> &#8358; {{product.price |intcomma}} </h4>
+                                <p class="lead">{{product.text |truncatewords:10}}</p>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between">
+                                <a href="{% url 'add_to_cart' product.id %}"><button class="btn btn-success btn-sm">Add To Cart</button></a>
+                                <a href="{% url 'store' product.id%}"><button class="btn btn-sm btn-primary">View More</button></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+              
+            {% endif %}
+        </div>
+
+    </div>
+
+    
+{% endblock contents %}

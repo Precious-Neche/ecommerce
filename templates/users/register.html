@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}
+    Register
+{% endblock title %}
+{% block contents %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto my-2">
+                <div class="card">
+                    <div class="card-header  bg-success text-center fw-bold shadow"> <h4 class="text-center display-6 text-white" ><em>Register</em></h4></div>
+                    <div class="card-body">
+
+                        
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            {{form.error}}
+                            <div class="button-group ">
+                                
+                                <button class="btn btn-success btn-lg text-centre p-2 w-100 my-2" type="submit">Register</button>
+
+                            </div>
+                        </form>
+                        <a href="{% url 'login' %}" class="text-decoration-none text-dark my-3" >Already a user? Login.</a>      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+{% endblock contents %}

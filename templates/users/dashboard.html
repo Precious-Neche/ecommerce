@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Dashboard
+{% endblock title %}
+
+{% block contents %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                {% if users %}
+                <div class="card">
+                    {% if users.profile_picture.url %}
+                        <div class="mx-auto my-3">
+                            <img src="{{users.profile_picture.url}}" alt="" width="200" class = "card-image  rounded-circle">
+                        </div>
+                    {% else %}
+                         <img src="{% static 'images/avatar.png' %}" alt="" class = "card-image ">
+                    {% endif %}
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Full Name: </strong>{{users.fullname }}</li>
+                            <li class="list-group-item"><strong>Username: </strong>{{users.username }}</li>
+                            <li class="list-group-item"><strong>Email: </strong>{{users.email }}</li>
+                            <li class="list-group-item"><strong>Gender: </strong>{{users.Gender}}</li>
+                            <li class="list-group-item"><strong>Date of Birth: </strong>{{users.dob }}</li>
+                            <li class="list-group-item"><strong>Phone: </strong>{{users.Phone}}</li>
+                            <li class="list-group-item"><strong>Address: </strong>{{users.Address }}</li>
+                            
+                        </ul>
+
+                        <a href="{% url 'update_profile'%}"><button class="btn btn-success text-center w-100 my-2">Update Profile</button></a>
+                    </div>
+                </div>
+                 
+               {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock contents %}

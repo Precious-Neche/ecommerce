@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}
+       Store   
+{% endblock title %}
+{% load humanize %}
+{% block contents %}
+    <div class="container">
+        <div class="bg-success"><h4 class="text-center display-6 text-white" ><em>{{product.title |title}}</em></h4></div>
+        <div class="row">
+            {% if product %}
+                <div class="col-md-4 ">
+                    <div class="card">
+                        <div class="  h-75">
+                            <img src="{{product.image.url}}" alt="" height = "200" class ="img-fluid ">
+                        </div>
+                    </div> 
+                </div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header p-1">
+                            {{product.title}}
+                        </div>
+                        <div class="card-body">
+                                <span class="badge bg-primary my-2">In Stock: {{product.stock}}</span>
+                                <h4 class="display-6 fw-bold my-2"> &#8358; {{product.price |intcomma}} </h4>
+                                <p class="lead">{{product.text }}</p>
+                            </div>
+                            <div class="card-footer ">
+                                <a href="{% url 'add_to_cart' product.id %}"><button class="btn btn-success w-100">Add To Cart</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    
+{% endblock contents %}

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+
+{% block contents %}
+  <section id="slider" style="background-color: #FFFFFF;">
+      <div class="container text-dark py-3" >
+            <!-- Carousel -->
+          <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+            <!-- Indicators/dots -->
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+              <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+              <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+            </div>
+
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner ">
+              {% if sliders %}
+                {% for slider in sliders %}
+                    <div {% if slider.id == 1 %} class="carousel-item active"{% else %}class="carousel-item"{% endif %}>
+                      <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="content mt-5">
+                              <h4 >{{slider.title}}</h4>
+                              <p class="lead">{{slider.text}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <img src="{{slider.image.url}}" alt="Los Angeles" style= "height: 60vh;"d-block w-100 img-fluid">
+                        </div>
+                      </div>
+                      
+                    </div>
+                {% endfor %}
+              {% endif %}
+              
+              
+            </div>
+
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
+          </div>
+      </div>
+   
+  </section>
+
+  <section id="category">
+     <div class="container my-5 ">
+      <div class="bg-success"><h4 class="text-center display-6 text-white" ><em>Product Categories</em></h4></div>
+      <div class="row">
+        {% if categorys %}
+            {% for category in categorys %}
+              <div class="col-md-3 col-sm-6 col-12">
+                 <a href="{% url 'category' category.id %}" class="text-decoration-none">
+                    <div class=" my-3 rounded-circle h-75">
+                      <img src="{{category.image.url}}" alt="" height = "200" class ="img-fluid rounded-circle">
+                    </div>
+                    <div class=" text-center mt-4 text-success">
+                      {{category.title}}
+                    </div>
+                 </a>
+              </div>
+              
+            {% endfor %}
+        {% endif %}
+      </div>
+      <a href="{% url 'stores'%}"><button class="btn btn-success float-end mt-2 mb-5">View all</button></a>
+     </div>
+  </section>
+
+  <section id="products">
+    <div class="container my-5">
+      <div class="bg-success mt-4"><h4 class="text-center display-6 text-white ms-5" > <em>New in Stock</em></h4></div>
+     <div class="row">
+       {% if products %}
+           {% for product in products %}
+             <div class="col-md-3 col-sm-6">
+                <a href="{% url 'store' product.id%}" class="text-decoration-none">
+                  <div class=" my-3 rounded-circle h-75">
+                    <img src="{{product.image.url}}" alt="" height = "200" class ="img-fluid rounded-circle">
+                  </div>
+                  <div class=" text-center mt-4 text-success">
+                    {{product.title}}
+                  </div>
+                </a>
+             </div>
+             
+           {% endfor %}
+       {% endif %}
+     </div>
+     <a href="{% url 'stores'%}"><button class="btn btn-success float-end my-2">View all</button></a>
+    </div>
+ </section>
+{% endblock contents %}
+
+
+
